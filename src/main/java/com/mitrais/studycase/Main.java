@@ -1,4 +1,4 @@
-package com.mitrais.studycase;
+package main.java.com.mitrais.studycase;
 
 public class Main {
     public static void main(String args[]) {
