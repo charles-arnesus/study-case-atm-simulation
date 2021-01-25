@@ -2,6 +2,8 @@ package main.java.com.mitrais.studycase.adapter.screens;
 
 import main.java.com.mitrais.studycase.domain.entities.Account;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class SummaryScreen {
@@ -30,12 +32,14 @@ public class SummaryScreen {
     }
 
     private static void printSummaryMenu(int withdrawAmount, int balance) {
-        String menu = String.format("SummaryDate : 2019-02-30 10:00 AM\n" +
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd h:m a");
+        String now = LocalDateTime.now().format(formatter);
+        String menu = String.format("SummaryDate : %s\n" +
                 "Withdraw : $%d\n" +
                 "Balance : $%d\n" +
                 "\n1. Transaction\n" +
                 "2. Exit\n" +
-                "Choose option[2]: ", withdrawAmount, balance);
+                "Choose option[2]: ", now, withdrawAmount, balance);
         System.out.print(menu);
     }
 }
