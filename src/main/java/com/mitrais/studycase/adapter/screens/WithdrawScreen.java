@@ -39,8 +39,6 @@ public class WithdrawScreen {
                     System.out.println("Other");
                     break;
                 case "5":
-                    isExitSelected = true;
-                    break;
                 case "":
                     isExitSelected = true;
                     break;
