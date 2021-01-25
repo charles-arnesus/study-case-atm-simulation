@@ -1,4 +1,4 @@
-package main.java.com.mitrais.studycase.adapter.controller;
+package main.java.com.mitrais.studycase.adapter.controllers;
 
 import main.java.com.mitrais.studycase.domain.entities.Account;
 import main.java.com.mitrais.studycase.domain.usecases.SignIn;

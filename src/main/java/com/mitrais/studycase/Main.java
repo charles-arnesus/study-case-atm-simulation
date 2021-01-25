@@ -1,6 +1,6 @@
 package main.java.com.mitrais.studycase;
 
-import main.java.com.mitrais.studycase.adapter.controller.AtmSimulationController;
+import main.java.com.mitrais.studycase.adapter.controllers.AtmSimulationController;
 import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceImpl;
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
