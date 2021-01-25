@@ -7,33 +7,26 @@ import main.java.com.mitrais.studycase.domain.exceptions.InsufficientBalanceExce
 import java.util.Scanner;
 
 public class WithdrawScreen {
-    public static void run(Account account, AtmSimulationController atmSimulationController) {
-        boolean isExitSelected = false;
+    public static boolean run(Account account, AtmSimulationController atmSimulationController) {
+        boolean isExitSelected = false, isBackToWelcomeScreen = false;
         Scanner in = new Scanner(System.in);
         while (!isExitSelected) {
             printWithdrawMenu();
             String selectedMenu = in.nextLine();
+            int withdrawAmount = 0;
+            boolean isFromOtherWithdrawScreen = false;
             switch (selectedMenu) {
                 case "1":
-                    try {
-                        atmSimulationController.withdraw(10, account, false);
-                    } catch (InsufficientBalanceException ib) {
-                        System.out.println(ib.getMessage());
-                    }
+                    withdrawAmount = 10;
+                    isFromOtherWithdrawScreen = false;
                     break;
                 case "2":
-                    try {
-                        atmSimulationController.withdraw(50, account, false);
-                    } catch (InsufficientBalanceException ib) {
-                        System.out.println(ib.getMessage());
-                    }
+                    withdrawAmount = 50;
+                    isFromOtherWithdrawScreen = false;
                     break;
                 case "3":
-                    try {
-                        atmSimulationController.withdraw(100, account, false);
-                    } catch (InsufficientBalanceException ib) {
-                        System.out.println(ib.getMessage());
-                    }
+                    withdrawAmount = 100;
+                    isFromOtherWithdrawScreen = false;
                     break;
                 case "4":
                     System.out.println("Other");
@@ -46,7 +39,17 @@ public class WithdrawScreen {
                     System.out.println("Invalid option");
                     break;
             }
+            if(!isExitSelected) {
+                try {
+                    Account deductedAccount = atmSimulationController.withdraw(withdrawAmount, account, isFromOtherWithdrawScreen);
+                    isBackToWelcomeScreen = SummaryScreen.run(deductedAccount, withdrawAmount);
+                    isExitSelected = true;
+                } catch (InsufficientBalanceException ib) {
+                    System.out.println(ib.getMessage());
+                }
+            }
         }
+        return isBackToWelcomeScreen;
     }
 
     private static void printWithdrawMenu() {
