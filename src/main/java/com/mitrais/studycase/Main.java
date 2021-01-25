@@ -1,6 +1,7 @@
 package main.java.com.mitrais.studycase;
 
 import main.java.com.mitrais.studycase.adapter.controllers.AtmSimulationController;
+import main.java.com.mitrais.studycase.adapter.screens.TransactionScreen;
 import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceImpl;
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
@@ -47,9 +48,7 @@ public class Main {
             if (isDataValid) {
                 Account account = atmSimulationController.signIn(accountNumber, pin);
                 if (account != null) {
-                    System.out.println("Account Number: " + account.getAccountNumber());
-                    System.out.println("Name: " + account.getName());
-                    System.out.println("Balance: " + account.getBalance());
+                    TransactionScreen.run(account);
                 } else {
                     System.out.println("Invalid Account Number/PIN");
                 }
