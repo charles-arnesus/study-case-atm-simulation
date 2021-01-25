@@ -4,9 +4,7 @@ import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceI
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
 import main.java.com.mitrais.studycase.domain.exceptions.InsufficientBalanceException;
-import main.java.com.mitrais.studycase.domain.usecases.SignIn;
 import main.java.com.mitrais.studycase.domain.usecases.Withdraw;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

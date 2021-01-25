@@ -5,7 +5,8 @@ import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepository
 import main.java.com.mitrais.studycase.domain.entities.Account;
 import main.java.com.mitrais.studycase.domain.usecases.SignIn;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class SignInTest {
     private final AtmSimulationDataSourceImpl atmSimulationDataSource = new AtmSimulationDataSourceImpl();

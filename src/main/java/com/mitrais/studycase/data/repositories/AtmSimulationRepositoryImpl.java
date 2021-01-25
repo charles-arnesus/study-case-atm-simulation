@@ -2,7 +2,6 @@ package main.java.com.mitrais.studycase.data.repositories;
 
 import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSource;
 import main.java.com.mitrais.studycase.domain.entities.Account;
-import main.java.com.mitrais.studycase.domain.exceptions.InsufficientBalanceException;
 import main.java.com.mitrais.studycase.domain.repositories.AtmSimulationRepository;
 
 public class AtmSimulationRepositoryImpl implements AtmSimulationRepository {
