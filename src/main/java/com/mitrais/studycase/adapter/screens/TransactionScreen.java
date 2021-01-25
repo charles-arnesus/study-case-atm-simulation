@@ -20,8 +20,6 @@ public class TransactionScreen {
                     System.out.println("Fund Transfer");
                     break;
                 case "3":
-                    isExitSelected = true;
-                    break;
                 case "":
                     isExitSelected = true;
                     break;
