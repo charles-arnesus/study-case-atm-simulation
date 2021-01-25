@@ -2,19 +2,24 @@ package main.java.com.mitrais.studycase.adapter.screens;
 
 import main.java.com.mitrais.studycase.adapter.controllers.AtmSimulationController;
 import main.java.com.mitrais.studycase.domain.entities.Account;
+import main.java.com.mitrais.studycase.domain.exceptions.InsufficientBalanceException;
 
 import java.util.Scanner;
 
-public class TransactionScreen {
+public class WithdrawScreen {
     public static void run(Account account, AtmSimulationController atmSimulationController) {
         boolean isExitSelected = false;
         Scanner in = new Scanner(System.in);
-        while (!isExitSelected){
-            printTransactionMenu();
+        while (!isExitSelected) {
+            printWithdrawMenu();
             String selectedMenu = in.nextLine();
-            switch (selectedMenu){
+            switch (selectedMenu) {
                 case "1":
-                    WithdrawScreen.run(account, atmSimulationController);
+                    try {
+                        atmSimulationController.withdraw(200, account, false);
+                    } catch (InsufficientBalanceException ib) {
+                        System.out.println(ib.getMessage());
+                    }
                     break;
                 case "2":
                     System.out.println("Fund Transfer");
@@ -34,11 +39,12 @@ public class TransactionScreen {
         }
     }
 
-    private static void printTransactionMenu() {
-        System.out.print("" +
-                "1. Withdraw\n" +
-                "2. Fund Transfer\n" +
-                "3. Exit\n" +
-                "Please choose option[3]: ");
+    private static void printWithdrawMenu() {
+        System.out.print("1. $10\n" +
+                "2. $50\n" +
+                "3. $100\n" +
+                "4. Other\n" +
+                "5. Back\n" +
+                "Please choose option[5]: ");
     }
 }

@@ -1,6 +1,8 @@
 package main.java.com.mitrais.studycase.data.datasources;
 
 import main.java.com.mitrais.studycase.data.models.AccountModel;
+import main.java.com.mitrais.studycase.domain.entities.Account;
+import main.java.com.mitrais.studycase.domain.exceptions.InsufficientBalanceException;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,5 +21,28 @@ public class AtmSimulationDataSourceImpl implements AtmSimulationDataSource {
                 .findFirst()
                 .orElse(null);
         return result;
+    }
+
+    @Override
+    public AccountModel withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen) {
+        AccountModel accountModel = accountList
+                .stream()
+                .filter(acc -> account.getAccountNumber().equals(acc.getAccountNumber()))
+                .findFirst()
+                .orElse(null);
+        if (accountModel != null) {
+            if (accountModel.getBalance() < withdrawAmount) {
+                String message = "Insufficient balance $";
+                if (isFromOtherWithdrawScreen) {
+                    message += withdrawAmount;
+                } else {
+                    message += accountModel.getBalance();
+                }
+                throw new InsufficientBalanceException(message);
+            } else {
+                accountModel.setBalance(accountModel.getBalance() - withdrawAmount);
+            }
+        }
+        return accountModel;
     }
 }

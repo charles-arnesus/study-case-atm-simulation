@@ -6,6 +6,7 @@ import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceI
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
 import main.java.com.mitrais.studycase.domain.usecases.SignIn;
+import main.java.com.mitrais.studycase.domain.usecases.Withdraw;
 
 import java.util.Scanner;
 
@@ -19,8 +20,9 @@ public class Main {
         AtmSimulationRepositoryImpl atmSimulationRepository = new AtmSimulationRepositoryImpl(atmSimulationDataSource);
         //use case
         SignIn signInUseCase = new SignIn(atmSimulationRepository);
+        Withdraw withdrawUseCase = new Withdraw(atmSimulationRepository);
         //controller
-        AtmSimulationController atmSimulationController = new AtmSimulationController(signInUseCase);
+        AtmSimulationController atmSimulationController = new AtmSimulationController(signInUseCase, withdrawUseCase);
         Scanner in = new Scanner(System.in);
         while (true) {
             isDataValid = true;
@@ -48,7 +50,7 @@ public class Main {
             if (isDataValid) {
                 Account account = atmSimulationController.signIn(accountNumber, pin);
                 if (account != null) {
-                    TransactionScreen.run(account);
+                    TransactionScreen.run(account, atmSimulationController);
                 } else {
                     System.out.println("Invalid Account Number/PIN");
                 }

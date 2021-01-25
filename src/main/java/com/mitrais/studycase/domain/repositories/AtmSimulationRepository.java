@@ -4,4 +4,6 @@ import main.java.com.mitrais.studycase.domain.entities.Account;
 
 public interface AtmSimulationRepository {
     Account signIn(String testAccountNumber, String testPin);
+
+    Account withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen);
 }
