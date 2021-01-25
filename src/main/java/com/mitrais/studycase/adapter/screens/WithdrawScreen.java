@@ -16,20 +16,32 @@ public class WithdrawScreen {
             switch (selectedMenu) {
                 case "1":
                     try {
-                        atmSimulationController.withdraw(200, account, false);
+                        atmSimulationController.withdraw(10, account, false);
                     } catch (InsufficientBalanceException ib) {
                         System.out.println(ib.getMessage());
                     }
                     break;
                 case "2":
-                    System.out.println("Fund Transfer");
+                    try {
+                        atmSimulationController.withdraw(50, account, false);
+                    } catch (InsufficientBalanceException ib) {
+                        System.out.println(ib.getMessage());
+                    }
                     break;
                 case "3":
-                    System.out.println("Exit");
+                    try {
+                        atmSimulationController.withdraw(100, account, false);
+                    } catch (InsufficientBalanceException ib) {
+                        System.out.println(ib.getMessage());
+                    }
+                    break;
+                case "4":
+                    System.out.println("Other");
+                    break;
+                case "5":
                     isExitSelected = true;
                     break;
                 case "":
-                    System.out.println("Not Selecting Menu");
                     isExitSelected = true;
                     break;
                 default:
