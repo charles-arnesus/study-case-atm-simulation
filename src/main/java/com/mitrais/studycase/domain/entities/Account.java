@@ -5,10 +5,10 @@ import java.util.Objects;
 public class Account {
     private String name;
     private String pin;
-    private String balance;
+    private int balance;
     private String accountNumber;
 
-    public Account(String name, String pin, String balance, String accountNumber) {
+    public Account(String name, String pin, int balance, String accountNumber) {
         this.name = name;
         this.pin = pin;
         this.balance = balance;
@@ -31,11 +31,11 @@ public class Account {
         this.pin = pin;
     }
 
-    public String getBalance() {
+    public int getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(int balance) {
         this.balance = balance;
     }
 

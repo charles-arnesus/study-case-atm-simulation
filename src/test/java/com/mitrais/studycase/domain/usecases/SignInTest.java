@@ -14,7 +14,7 @@ public class SignInTest {
 
     @Test
     public void testShouldReturnTrueWhenSignInUsingCorrectAccountAndPin() {
-        final Account testAccount = new Account("John Doe", "012108", "$100", "112233");
+        final Account testAccount = new Account("John Doe", "012108", 100, "112233");
         final String testAccountNumber = "112233";
         final String testPin = "012108";
         final Account result = useCase.signIn(testAccountNumber, testPin);
