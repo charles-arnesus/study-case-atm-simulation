@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         boolean isDataValid;
+        final String regex = "-?(0|[1-9]\\d*)";
         //data source
         AtmSimulationDataSourceImpl atmSimulationDataSource = new AtmSimulationDataSourceImpl();
         //repository
@@ -26,8 +27,16 @@ public class Main {
             String accountNumber = in.nextLine();
             System.out.print("Enter PIN : ");
             String pin = in.nextLine();
+            if (!accountNumber.matches(regex)) {
+                System.out.println("Account Number should only contains numbers");
+                isDataValid = false;
+            }
             if (accountNumber.length() != 6) {
                 System.out.println("Account Number should have 6 digits length");
+                isDataValid = false;
+            }
+            if (!pin.matches(regex)) {
+                System.out.println("PIN should only contains number");
                 isDataValid = false;
             }
             if (pin.length() != 6) {
@@ -42,7 +51,7 @@ public class Main {
                     System.out.println("Name: " + account.getName());
                     System.out.println("Balance: " + account.getBalance());
                 } else {
-                    System.out.println("account not found");
+                    System.out.println("Invalid Account Number/PIN");
                 }
             }
         }
