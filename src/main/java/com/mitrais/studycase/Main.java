@@ -2,6 +2,7 @@ package main.java.com.mitrais.studycase;
 
 import main.java.com.mitrais.studycase.adapter.controllers.AtmSimulationController;
 import main.java.com.mitrais.studycase.adapter.screens.TransactionScreen;
+import main.java.com.mitrais.studycase.common.constants.Constants;
 import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceImpl;
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
@@ -13,7 +14,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         boolean isDataValid;
-        final String regex = "-?(0|[0-9]\\d*)";
         //data source
         AtmSimulationDataSourceImpl atmSimulationDataSource = new AtmSimulationDataSourceImpl();
         //repository
@@ -30,7 +30,7 @@ public class Main {
             String accountNumber = in.nextLine();
             System.out.print("Enter PIN : ");
             String pin = in.nextLine();
-            if (!accountNumber.matches(regex)) {
+            if (!accountNumber.matches(Constants.REGEX)) {
                 System.out.println("Account Number should only contains numbers");
                 isDataValid = false;
             }
@@ -38,7 +38,7 @@ public class Main {
                 System.out.println("Account Number should have 6 digits length");
                 isDataValid = false;
             }
-            if (!pin.matches(regex)) {
+            if (!pin.matches(Constants.REGEX)) {
                 System.out.println("PIN should only contains number");
                 isDataValid = false;
             }
