@@ -50,4 +50,13 @@ public class AtmSimulationDataSourceImpl implements AtmSimulationDataSource {
                 .findFirst()
                 .orElse(null);
     }
+
+    @Override
+    public AccountModel transferFund(String accountSource, String accountDestination, int transferAmount) {
+        AccountModel accountModelSource = findAccount(accountSource);
+        AccountModel accountModelDestination = findAccount(accountDestination);
+        accountModelSource.setBalance(accountModelSource.getBalance() - transferAmount);
+        accountModelDestination.setBalance(accountModelDestination.getBalance() + transferAmount);
+        return accountModelSource;
+    }
 }

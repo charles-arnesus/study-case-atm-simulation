@@ -8,4 +8,6 @@ public interface AtmSimulationDataSource {
     Account withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen);
 
     Account findAccount(String accountNumber);
+
+    Account transferFund(String accountSource, String accountDestination, int transferAmount);
 }

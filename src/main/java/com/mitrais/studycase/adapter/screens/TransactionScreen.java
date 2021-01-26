@@ -18,7 +18,7 @@ public class TransactionScreen {
                     isExitSelected = WithdrawScreen.run(account, atmSimulationController);
                     break;
                 case "2":
-                    System.out.println("Fund Transfer");
+                    isExitSelected = FundTransferScreen.run(account, atmSimulationController);
                     break;
                 case "3":
                 case "":

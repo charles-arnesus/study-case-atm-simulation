@@ -25,4 +25,9 @@ public class AtmSimulationRepositoryImpl implements AtmSimulationRepository {
     public Account findAccount(String accountNumber) {
         return atmSimulationDataSource.findAccount(accountNumber);
     }
+
+    @Override
+    public Account transferFund(String accountSource, String accountDestination, int transferAmount) {
+        return atmSimulationDataSource.transferFund(accountSource, accountDestination, transferAmount);
+    }
 }
