@@ -20,4 +20,9 @@ public class AtmSimulationRepositoryImpl implements AtmSimulationRepository {
     public Account withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen) {
         return atmSimulationDataSource.withdraw(account, withdrawAmount, isFromOtherWithdrawScreen);
     }
+
+    @Override
+    public Account findAccount(String accountNumber) {
+        return atmSimulationDataSource.findAccount(accountNumber);
+    }
 }

@@ -6,6 +6,7 @@ import main.java.com.mitrais.studycase.common.constants.Constants;
 import main.java.com.mitrais.studycase.data.datasources.AtmSimulationDataSourceImpl;
 import main.java.com.mitrais.studycase.data.repositories.AtmSimulationRepositoryImpl;
 import main.java.com.mitrais.studycase.domain.entities.Account;
+import main.java.com.mitrais.studycase.domain.usecases.FindAccount;
 import main.java.com.mitrais.studycase.domain.usecases.SignIn;
 import main.java.com.mitrais.studycase.domain.usecases.Withdraw;
 
@@ -21,8 +22,11 @@ public class Main {
         //use case
         SignIn signInUseCase = new SignIn(atmSimulationRepository);
         Withdraw withdrawUseCase = new Withdraw(atmSimulationRepository);
+        FindAccount findAccountUseCase = new FindAccount(atmSimulationRepository);
         //controller
-        AtmSimulationController atmSimulationController = new AtmSimulationController(signInUseCase, withdrawUseCase);
+        AtmSimulationController atmSimulationController = new AtmSimulationController(signInUseCase,
+                withdrawUseCase,
+                findAccountUseCase);
         Scanner in = new Scanner(System.in);
         while (true) {
             isDataValid = true;

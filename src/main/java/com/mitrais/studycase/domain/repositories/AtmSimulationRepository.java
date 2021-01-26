@@ -6,4 +6,6 @@ public interface AtmSimulationRepository {
     Account signIn(String testAccountNumber, String testPin);
 
     Account withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen);
+
+    Account findAccount(String accountNumber);
 }

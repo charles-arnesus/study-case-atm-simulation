@@ -25,11 +25,7 @@ public class AtmSimulationDataSourceImpl implements AtmSimulationDataSource {
 
     @Override
     public AccountModel withdraw(Account account, int withdrawAmount, boolean isFromOtherWithdrawScreen) {
-        AccountModel accountModel = accountList
-                .stream()
-                .filter(acc -> account.getAccountNumber().equals(acc.getAccountNumber()))
-                .findFirst()
-                .orElse(null);
+        AccountModel accountModel = findAccount(account.getAccountNumber());
         if (accountModel != null) {
             if (accountModel.getBalance() < withdrawAmount) {
                 String message = "Insufficient balance $";
@@ -44,5 +40,14 @@ public class AtmSimulationDataSourceImpl implements AtmSimulationDataSource {
             }
         }
         return accountModel;
+    }
+
+    @Override
+    public AccountModel findAccount(String accountNumber) {
+        return accountList
+                .stream()
+                .filter(acc -> accountNumber.equals(acc.getAccountNumber()))
+                .findFirst()
+                .orElse(null);
     }
 }
