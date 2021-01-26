@@ -10,39 +10,49 @@ public class WithdrawScreen {
     public static boolean run(Account account, AtmSimulationController atmSimulationController) {
         boolean isExitSelected = false, isBackToWelcomeScreen = false;
         Scanner in = new Scanner(System.in);
+        int withdrawAmount = 0;
+        String selectedMenu;
+        boolean isFromOtherWithdrawScreen = false, isValidOption = true;
         while (!isExitSelected) {
             printWithdrawMenu();
-            String selectedMenu = in.nextLine();
-            int withdrawAmount = 0;
-            boolean isFromOtherWithdrawScreen = false;
+            selectedMenu = in.nextLine();
             switch (selectedMenu) {
                 case "1":
                     withdrawAmount = 10;
                     isFromOtherWithdrawScreen = false;
+                    isValidOption = true;
                     break;
                 case "2":
                     withdrawAmount = 50;
                     isFromOtherWithdrawScreen = false;
+                    isValidOption = true;
                     break;
                 case "3":
                     withdrawAmount = 100;
                     isFromOtherWithdrawScreen = false;
+                    isValidOption = true;
                     break;
                 case "4":
-                    System.out.println("Other");
+                    isFromOtherWithdrawScreen = true;
+                    isValidOption = true;
                     break;
                 case "5":
                 case "":
                     isExitSelected = true;
                     break;
                 default:
+                    isValidOption = false;
                     System.out.println("Invalid option");
                     break;
             }
-            if(!isExitSelected) {
+            if(!isExitSelected && isValidOption) {
                 try {
-                    Account deductedAccount = atmSimulationController.withdraw(withdrawAmount, account, isFromOtherWithdrawScreen);
-                    isBackToWelcomeScreen = SummaryScreen.run(deductedAccount, withdrawAmount);
+                    if (isFromOtherWithdrawScreen) {
+                        isBackToWelcomeScreen = OtherWithdrawScreen.run(account, atmSimulationController);
+                    } else {
+                        Account deductedAccount = atmSimulationController.withdraw(withdrawAmount, account, false);
+                        isBackToWelcomeScreen = SummaryScreen.run(deductedAccount, withdrawAmount);
+                    }
                     isExitSelected = true;
                 } catch (InsufficientBalanceException ib) {
                     System.out.println(ib.getMessage());
