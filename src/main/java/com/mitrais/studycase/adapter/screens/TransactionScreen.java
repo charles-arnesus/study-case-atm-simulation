@@ -9,9 +9,10 @@ public class TransactionScreen {
     public static void run(Account account, AtmSimulationController atmSimulationController) {
         boolean isExitSelected = false;
         Scanner in = new Scanner(System.in);
+        String selectedMenu;
         while (!isExitSelected) {
             printTransactionMenu();
-            String selectedMenu = in.nextLine();
+            selectedMenu = in.nextLine();
             switch (selectedMenu) {
                 case "1":
                     isExitSelected = WithdrawScreen.run(account, atmSimulationController);

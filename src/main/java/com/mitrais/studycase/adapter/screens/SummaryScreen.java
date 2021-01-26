@@ -10,9 +10,10 @@ public class SummaryScreen {
     public static boolean run(Account account, int withdrawAmount) {
         boolean isExitSelected = false, isBackToWelcomeScreen = false;
         Scanner in = new Scanner(System.in);
+        String selectedMenu;
         while (!isExitSelected) {
             printSummaryMenu(withdrawAmount, account.getBalance());
-            String selectedMenu = in.nextLine();
+            selectedMenu = in.nextLine();
             switch (selectedMenu) {
                 case "1":
                     isBackToWelcomeScreen = false;
